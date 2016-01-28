@@ -1,0 +1,62 @@
+Byte读取方式的代码过程
+
+	像Byte数据的读取过程比较简单，仍然强调HST_STS的变化，如前面一段英文描述，命名是否成功结束可以用INTR位来得到，命名执行失败可以通过HST_STS&1CH是否为0来判断（也就是各种错误标志位）。
+
+   第一步：通过HST_STS判断SMBus是否空闲可用(HST_STS&1EH==0？不为0则1EH=>HST_STS。HST_STS&01H==0?不为0则循环)
+   第二步：设置XMIT_SLVA (SMBA+04h), 选择设备地址，以及读写设为01h
+   第三步：设置HST_CMD（SMBASE+03h),选择设备对应的Register Index
+   第四步：设置HST_CNT（SMBASE+02h)，写48h表Byte Data形式读取
+   第五步：循环判断HST_STS(HST_STS&1CH不为0则报错，HOST_BUSY应为0且INTR应为1否则循环)
+   第六步：从HST_D0(SMBASE+05h)中读取数据
+
+
+
+
+;[]============================[]
+;Input     : CL - register index
+;        CH - device ID
+;Output : AL - Value read
+;[]============================[]
+
+Smbus_ReadByte    Proc    Near
+
+     Push          cx       ;保存cx
+
+     	mov      dx,05000h     ;SMBus Base address，在我的機器上的
+     	mov      dl,04h        ；選擇Transmit Slave Address
+     	or       ch，01h       ;read 讀
+     	mov      al,ch         ;ID cmd(read)
+     	out      dx,al
+
+     	IODELAY
+
+     	call     Chk_SMBus_Ready   ；如SMbus不ok就一直停在這裏，直到超過規定的時間，如果SMbus還不ok那麼就報錯。
+
+    	pop      ax                ；恢復cx到ax中
+     	mov      dl,03h          ；選擇Host Command Register
+     	out      dx,al            ；把要讀取的寄存器index送出去
+
+     	IODELAY
+
+     	mov      dl,02h          ；選擇Host Control Register
+     	mov      al,48h          ；下命令開始讀取by Byte Data:
+     	out      dx,al            ；Read data
+
+     	IODELAY
+
+      	mov      cx, 100h
+
+@@:               
+
+     	IODELAY            
+
+     	loop     short @B      ；這裏這個迴圈是為了讓smbus準備好而加的延時
+
+     	call     Chk_SMBus_Ready
+
+     	mov      dl,05            ；選擇Host Data 0 Register
+     	in       al,dx            ；Data0
+
+	IODELAY
+
+	ret
