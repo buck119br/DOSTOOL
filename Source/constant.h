@@ -132,7 +132,7 @@ char function_menu_content[10][21]=
 {
   //"                    ",20*char
 	" Memory test ------ ",
-	" ------------------ ",
+	" CPU Monitor ------ ",
 	" ------------------ ",
 	" ------------------ ",
 	" ------------------ ",
@@ -242,6 +242,9 @@ struct point_location msr_display_end	= {17,52};
 
 struct point_location clk_freq_display_start = {5,27};
 struct point_location clk_freq_display_end   = {18,52};
+
+struct point_location cpu_monitor_start = {6,27};
+struct point_location cpu_monitor_end   = {17,52};
 
 
 // Memory test pattern, same as Linux kernel memtest

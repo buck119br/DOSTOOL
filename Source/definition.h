@@ -51,6 +51,7 @@ struct
 // 151		: Memory Test
 // 152		: CPU MSR
 // 153		: Clock Frequency
+// 154		: CPU Monitor
 // 199     	: The welcome interface
 // 203		: Memory Address Input
 // 205		: IO Space Address Input
@@ -409,6 +410,8 @@ void message_window_display(unsigned int, unsigned int, unsigned int, unsigned i
 void msr_display(void);
 
 void clock_frequency_display(void);
+
+void cpu_monitor_display(void);
 
 void spd_parser_display(void);
 

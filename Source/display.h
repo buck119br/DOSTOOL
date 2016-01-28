@@ -355,6 +355,7 @@ void refresh_main_interface(void)
 			case 151:   // Memory Test
 			case 152: 	// CPU MSR
 			case 153:	// Clock Frequecy
+			case 154:	// CPU Monitor
 			case 199: 	// Welcome
 			case 203:	// Memory Address Input
 			case 205:	// IO Space Address Input
@@ -378,7 +379,7 @@ void refresh_main_interface(void)
 		display_zone6(backgnd_display_mode);
 		display_zone7(backgnd_display_mode);
 
-		if ((content_number != 152) && (content_number != 153))
+		if ((content_number != 152) && (content_number != 153) && (content_number != 154))
 		{
 			display_control.main_refresh = 0;
 		}
@@ -435,6 +436,9 @@ void refresh_main_interface(void)
 				break;
 			case 153:
 				clock_frequency_display();
+				break;
+			case 154:
+				cpu_monitor_display();
 				break;
 			case 251:
 				memory_test_display();
@@ -1243,6 +1247,18 @@ void clock_frequency_display(void)
 	}
 	divide = 1000;
 	printf("TSC : %ld MHz ", out_temp / divide / divide * 101 / 100);
+}
+
+
+void cpu_monitor_display(void)
+{
+	if (display_control.main_refresh == 1)
+	{
+		message_window_display(cpu_monitor_start.row, cpu_monitor_start.col, cpu_monitor_end.row, cpu_monitor_end.col);
+		cursor_move(cpu_monitor_start.row , cpu_monitor_start.col + 5);
+		printf("CPU Monitor");
+		display_control.main_refresh = 0;
+	}
 }
 
 

@@ -1153,6 +1153,7 @@ void clock_frequency_read(void)
 	}
 	clock_frequency.tsc[timer_counter] = tsc_temp;
 
+	strcpy(content_name_string_zone2, "");
 }
 
 

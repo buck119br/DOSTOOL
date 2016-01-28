@@ -504,6 +504,11 @@ int main(void)
 									content_number = 151;
 									break;
 
+								case 1:
+									display_control.display_focus = 1;
+									content_number = 154;
+									break;
+
 								case 9:
 									row_color_set(zone_start_1.row,zone_start_1.col,zone_end_7.row,zone_end_7.col,color_white,color_black);
 									cursor_move(0,0);
