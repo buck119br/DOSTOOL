@@ -1164,7 +1164,7 @@ unsigned int pit_read(void)
 	_asm{
 		pushfd;
 		cli;
-		mov al, 00000000b;	//al = channel in bits 6 and 7, remaining bits clear
+		mov al, 0;			//al = channel in bits 6 and 7, remaining bits clear
 		out 0x43, al; 		//Send the latch command
  	
 		in  al, 0x40;		//al = low byte of count
@@ -1178,6 +1178,31 @@ unsigned int pit_read(void)
 	}
 
 	return pit_ret;
+}
+
+
+void cpu_monitor_info_read(void)
+{
+	// Temperature
+	switch (host_vendor_id)
+	{
+		// Intel
+		case 0x8086:
+			msr_read(0x19C, msr_info);
+			cpu_monitor.temp = (msr_info[0] >> 16) & 0xff;
+			break;
+
+		// VIA
+		case 0x1106:
+			msr_read(0x1423, msr_info);
+			cpu_monitor.temp = msr_info[0] & 0xff;
+			break;
+			
+		default:
+			break;
+	}
+
+	strcpy(content_name_string_zone2, "");
 }
 
 

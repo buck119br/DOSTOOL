@@ -307,6 +307,13 @@ struct
 	unsigned long hpet;				// High Precision Event Timer
 } clock_frequency;
 
+// CPU Monitor
+struct
+{
+	unsigned int temp: 8;
+	unsigned int vid: 8;
+} cpu_monitor;
+
 /**********************************************************
 ***********************************************************
 	FUNCTION DEFINITION

@@ -1164,6 +1164,9 @@ int main(void)
 							case 152:
 								cpu_msr_scan(msr_base_address);
 								break;
+							case 154:
+								cpu_monitor_info_read();
+								break;
 							default : break;
 						}
 					}

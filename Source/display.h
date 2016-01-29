@@ -1251,14 +1251,17 @@ void clock_frequency_display(void)
 
 
 void cpu_monitor_display(void)
-{
+{	
 	if (display_control.main_refresh == 1)
 	{
 		message_window_display(cpu_monitor_start.row, cpu_monitor_start.col, cpu_monitor_end.row, cpu_monitor_end.col);
-		cursor_move(cpu_monitor_start.row , cpu_monitor_start.col + 5);
+		cursor_move(cpu_monitor_start.row , cpu_monitor_start.col + 8);
 		printf("CPU Monitor");
 		display_control.main_refresh = 0;
 	}
+
+	cursor_move(cpu_monitor_start.row + 2 , cpu_monitor_start.col + 2);
+	printf("Temperature: %d Cels", cpu_monitor.temp);
 }
 
 
