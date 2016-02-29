@@ -647,6 +647,7 @@ int main(void)
 									menu_row_operation (hba_function_number,menu_direction.hba,hba_menu_start.row,hba_menu_start.col,hba_menu_end.col);
 									break;
 
+								// Clock Frequency
 								case 0x9:
 									display_control.display_focus = 1;
 									content_number = 153;
@@ -1163,6 +1164,9 @@ int main(void)
 								break;
 							case 152:
 								cpu_msr_scan(msr_base_address);
+								break;
+							case 153:
+								strcpy(content_name_string_zone2, "");
 								break;
 							case 154:
 								cpu_monitor_info_read();
