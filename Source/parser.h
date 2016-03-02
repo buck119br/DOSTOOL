@@ -1155,7 +1155,7 @@ void cpuid_parser(void)
 		cpuid_info_parsered.cache_2_size = temp[1] >> 10;
 		cpuid_info_parsered.cache_3_size = temp[2] >> 20;
 	}
-	else if (host_vendor_id == 0x1106)
+	else if (host_vendor_id == 0x1106 || host_vendor_id == 0x1d17)
 	{
 		dword_temp = cpuid_info[1][22];
 		cpuid_info_parsered.cache_1_size = (dword_temp >> 24) & 0xff;

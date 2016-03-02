@@ -330,7 +330,7 @@ int main(void)
 							{
 								unsigned int table_length;
 								
-								if (host_vendor_id == 0x1106)
+								if (host_vendor_id == 0x1106 || host_vendor_id == 0x1d17)
 								{
 									table_length = 102;
 								}
