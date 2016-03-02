@@ -65,6 +65,7 @@ void bdf_parser(void)
 		case 0x10ec: // Realtek
 			strcpy(pci_device_detail.name_string, "Realtek");break;								
 		case 0x1106: // VIA
+		case 0x1d17:
 			strcpy(pci_device_detail.name_string, "VIA");break;
 		case 0x1114:
 			strcpy(pci_device_detail.name_string, "Atmel");break;

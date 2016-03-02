@@ -266,7 +266,7 @@ int main(void)
 								}
 								else 
 								{
-									if (host_vendor_id == 0x1106)
+									if (host_vendor_id == 0x1106 || host_vendor_id == 0x1d17)
 									{
 										content_number = 102;
 									}

@@ -475,7 +475,7 @@ void cpuid_scan(void)
 	unsigned int  table_length;
 	unsigned int  max_input_value;
 
-	if (host_vendor_id == 0x1106)
+	if (host_vendor_id == 0x1106 || host_vendor_id == 0x1d17)
 	{
 		table_length = 3;
 	}
@@ -628,6 +628,7 @@ void spd_read(unsigned int dimm_no)
 	{
 		// VIA Host bridge
 		case 0x1106:
+		case 0x1d17:
 			// D17F0 OFFSET D0:D1
 			smb_base_addr = 0x400;          
 			spd_addr = 0xA0 + dimm_no * 2;
@@ -894,7 +895,7 @@ void hba_register_scan(unsigned int hba_counter)
 			}
 
 			// VIA
-			else if (host_vendor_id == 0x1106)
+			else if (host_vendor_id == 0x1106 || host_vendor_id == 0x1d17)
 			{
 				unsigned long reg_ret;
 
@@ -1192,6 +1193,7 @@ void cpu_monitor_info_read(void)
 
 		// VIA
 		case 0x1106:
+		case 0x1d17:
 			msr_read(0x1423, msr_info);
 			cpu_monitor.temp = msr_info[0] & 0xff;
 			break;
