@@ -109,7 +109,7 @@ char welcome_content[20][80]=
 	"  Feature                                                                      ",
 	"  1. Read <Alt-R>                               2. Function <Alt-F>            ",
 	"     |- PCI config space <F6>                      |- Memory Test (Up to 4GB)  ",
-	"     |- CPUID                                      |-                          ",
+	"     |- CPUID                                      |- CPU Monitor              ",
 	"     |- Memory Map(E820)                           |-                          ",
 	"     |- Serial Presence Detect (Up to 8 DIMM)      |-                          ",
 	"     |- IO space (Up to 0xFFFF R/W)                |-                          ",
