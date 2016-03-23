@@ -142,7 +142,8 @@ void number_input (unsigned int function)
 				msr_write(msr_base_address, msr_info[0], msr_info[1]);
 				display_control.display_focus = 1;
 				break;
-				
+
+			// Memory Address Input
 			case 203:
 				if (number_input_value > 0xfffffeff)
 				{
@@ -156,7 +157,8 @@ void number_input (unsigned int function)
 					content_number = 103;
 				}
 				break;
-				
+
+			// IO Space Address Input
 			case 205:
 				if (number_input_value > 0xfeff)
 				{
@@ -171,6 +173,7 @@ void number_input (unsigned int function)
 				}
 				break;
 
+			// CPU MSR Address Input
 			case 252:
 				if (number_input_value > 0xfffffffe)
 				{

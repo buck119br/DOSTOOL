@@ -998,12 +998,18 @@ void number_input_display (unsigned int function)
 	{
 		switch (function)
 		{
-			case 203 : number_input_width = 8; break;
-			case 205 : number_input_width = 4; break;
-			case 252 : number_input_width = 8; break;
+			case 203 : 
+				strcpy(content_name_string_zone2, "Memory Address Input");
+				number_input_width = 8; break;
+			case 205 : 
+				strcpy(content_name_string_zone2, "IO Space Address Input");
+				number_input_width = 4; break;
+			case 252 : 
+				strcpy(content_name_string_zone2, "CPU MSR Address Input");
+				number_input_width = 8; break;
 			default : break;
 		}
-
+		
 		display_control.main_refresh = 1;
 		refresh_main_interface();
 		row_color_set (number_input_start.row, number_input_start.col, number_input_end.row, number_input_end.col, color_black, color_white);
