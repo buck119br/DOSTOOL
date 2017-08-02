@@ -33,6 +33,6 @@ South Huang, Marion Zhang, Jeff Zhao.
 User Interface Presentation
 ---------------------------
 
-![TMD](PIC/PCI Config Space.jpg)
+![UI](/PIC/PCI Config Space.jpg)
 
 = END =
